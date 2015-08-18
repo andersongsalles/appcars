@@ -2,6 +2,7 @@ package com.example.anderson.appcars;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.anderson.appcars.domain.Car;
+import com.example.anderson.appcars.fragments.CarFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +76,19 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Settings pressed", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Fragment
+        CarFragment frag = (CarFragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
+        if (frag == null){
+            frag = new CarFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
+            ft.commit();
+
+        }
+
     }
+
 
 
     @Override
